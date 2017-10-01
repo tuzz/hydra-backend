@@ -9,7 +9,9 @@ module Database
     end
 
     def connect!
-      ActiveRecord::Base.establish_connection(config.fetch(env))
+      ActiveRecord::Base.establish_connection(
+       ENV["DATABASE_URL"] || config.fetch(env)
+      )
     end
 
     def create!
