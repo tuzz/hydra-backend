@@ -3,8 +3,6 @@ module Hydra
     format :json
     version :v1
 
-    get "/" do
-      { hello: "world" }
-    end
+    get("/") { HealthcheckController.get(params) }
   end
 end
