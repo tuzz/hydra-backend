@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+require_relative "../config/application"
+
+ActiveRecord::Migrator.migrate("db/migrate")
+
+schema = File.open("db/schema.rb", "w")
+ActiveRecord::SchemaDumper.dump(ActiveRecord::Base.connection, schema)
