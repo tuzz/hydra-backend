@@ -2,13 +2,6 @@ require "bundler/setup"
 
 Bundler.require
 
-module Hydra
-  class Backend < Grape::API
-    format :json
-    version :v1
+$LOAD_PATH << File.expand_path("..", __dir__)
 
-    get "/" do
-      { hello: "world" }
-    end
-  end
-end
+require "config/routes"
