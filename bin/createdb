@@ -1,11 +1,5 @@
 #!/usr/bin/env ruby
 
-require "yaml"
+require_relative "../config/application"
 
-yaml = File.read("config/database.yml")
-config = YAML.load(yaml)
-
-config.each do |_, c|
-  name = c.fetch("database")
-  system("createdb #{name}")
-end
+Database.create!
