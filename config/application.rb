@@ -9,5 +9,9 @@ $LOAD_PATH << File.expand_path("..", __dir__)
 
 require "config/routes"
 
-Dir["config/initializers/**/*.rb"].each { |f| require f }
-Dir["app/**/*.rb"].each { |f| require f }
+def require_all(directory)
+  Dir["#{directory}/**/*.rb"].each { |f| require f }
+end
+
+require_all "config/initializers"
+require_all "app"
