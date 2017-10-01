@@ -1,0 +1,14 @@
+development:
+  encoding: utf8
+  adapter: postgresql
+  database: hydra_development
+
+test:
+  encoding: utf8
+  adapter: postgresql
+  database: hydra_test
+
+production:
+  encoding: utf8
+  adapter: postgresql
+  database: hydra_production

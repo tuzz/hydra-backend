@@ -1,6 +1,8 @@
 source "https://rubygems.org"
 
+gem "activerecord", require: "active_record"
 gem "grape"
+gem "pg"
 gem "puma"
 
 group :development, :test do
