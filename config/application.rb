@@ -10,7 +10,7 @@ $LOAD_PATH << File.expand_path("..", __dir__)
 require "config/routes"
 
 def require_all(directory)
-  Dir["#{directory}/**/*.rb"].each { |f| require f }
+  Dir["#{directory}/**/*.rb"].sort.each { |f| require f }
 end
 
 require_all "config/initializers"
