@@ -34,6 +34,8 @@ GEM
     rack (2.0.3)
     rack-accept (0.4.5)
       rack (>= 0.4)
+    rack-test (0.7.0)
+      rack (>= 1.0, < 3)
     rspec (3.6.0)
       rspec-core (~> 3.6.0)
       rspec-expectations (~> 3.6.0)
@@ -61,6 +63,7 @@ PLATFORMS
 
 DEPENDENCIES
   grape
+  rack-test
   rspec
 
 BUNDLED WITH
