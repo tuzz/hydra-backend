@@ -1,6 +1,6 @@
 require "bundler/setup"
 
-Bundler.require
+Bundler.require(:default, ENV.fetch("RACK_ENV"))
 
 $LOAD_PATH << File.expand_path("..", __dir__)
 
