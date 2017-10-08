@@ -14,4 +14,5 @@ def require_all(directory)
 end
 
 require_all "config/initializers"
+require_all "lib"
 require_all "app"
