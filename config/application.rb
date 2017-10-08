@@ -1,6 +1,7 @@
 ENV["RACK_ENV"] ||= "development"
 
 require "bundler/setup"
+require "strscan"
 require "yaml"
 
 Bundler.require(:default, ENV.fetch("RACK_ENV"))
