@@ -2,6 +2,11 @@ module Wikipedia
   SOURCE_PREFIX = "https://en.wikipedia.org/w/index.php?action=raw&title="
 
   class << self
+    def fetch(article_url)
+      input = source(article_url) or return
+      Parser.parse(input)
+    end
+
     def source(article_url)
       url = source_url(article_url) or return
       response = Faraday.get(url)
