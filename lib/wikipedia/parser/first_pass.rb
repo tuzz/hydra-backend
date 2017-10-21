@@ -10,6 +10,7 @@ module Wikipedia
       end
 
       def initialize(source)
+        source = replace_links(source)
         self.scanner = StringScanner.new(source)
       end
 
@@ -27,6 +28,12 @@ module Wikipedia
       private
 
       attr_accessor :scanner
+
+      def replace_links(source)
+        source
+          .gsub(/\[\[\s?/, "{{link:")
+          .gsub("]]", "}}")
+      end
 
       def scan_until_parens
         positive_lookahead = /(?=#{PARENS}|\z)/m

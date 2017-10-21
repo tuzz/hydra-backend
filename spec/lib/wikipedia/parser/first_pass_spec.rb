@@ -25,4 +25,10 @@ RSpec.describe Wikipedia::Parser::FirstPass do
     expect(parse("a \n {{b}}")).to eq ["a", ["b"]]
     expect(parse("a {{ \n b }}")).to eq ["a", ["b"]]
   end
+
+  it "parses wikipedia links as templates" do
+    expect(parse("[[a]]")).to eq [["link:a"]]
+    expect(parse("a{{b}}[[c]]{{d}}")).to eq ["a", ["b"], ["link:c"], ["d"]]
+    expect(parse("a [[ b ]]")).to eq ["a", ["link:b"]]
+  end
 end
