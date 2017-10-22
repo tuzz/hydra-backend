@@ -33,10 +33,7 @@ module Wikipedia
     private
 
     def extract_football_kit(params)
-      params = params.slice(*FOOTBALL_KIT_KEYS)
-      template = Template.new(name: "Football kit", params: params)
-
-      extracted.push(template)
+      extracted << Template.new(name: "Football kit", params: cleanup(params))
     end
 
     def extract_football_club(params)
@@ -55,6 +52,21 @@ module Wikipedia
 
     def numbered(keys, number)
       keys.map { |k| [k, number].join }
+    end
+
+    def cleanup(params)
+      params = params.slice(*FOOTBALL_KIT_KEYS)
+      params.each { |k, v| params[k] = strip_comment(v) }
+      params.each { |k, v| params[k] = v.presence }
+    end
+
+    def strip_comment(value)
+      return unless value
+
+      parts = value.split("<!--")
+      return unless parts.any?
+
+      parts.first.strip
     end
 
     attr_accessor :input, :extracted

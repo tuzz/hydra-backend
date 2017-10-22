@@ -57,4 +57,21 @@ RSpec.describe Wikipedia::Extractor do
     expect(extract(input).first).to eq(template("Football kit",
       matched_up_params(1).merge("shorts" => nil)))
   end
+
+  # Some of the templates have html comments between parameters. This naively
+  # strips them from the end, which covers the cases I've seen.
+  it "strips html comments from the end of params" do
+    params = football_kit_params.merge("shorts" => "shorts\n<!-- comment -->")
+    input = template("Football kit", params)
+		expect(extract(input)).to eq [template("Football kit", football_kit_params)]
+  end
+
+  it "params that are empty to nil" do
+    params = football_kit_params.merge("shorts" => " \n\n\n ")
+    input = template("Football kit", params)
+
+		expect(extract(input)).to eq [
+      template("Football kit", football_kit_params.merge("shorts" => nil)),
+    ]
+  end
 end
